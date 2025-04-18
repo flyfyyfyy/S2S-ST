@@ -17,16 +17,13 @@ from torchvision import transforms
 
 import models
 import utils
-import unet_utils
 
 import importlib
 importlib.reload(models)
 importlib.reload(utils)
-importlib.reload(unet_utils)
 
 from models import *
 from utils import *
-from unet_utils import *
 
 def str_to_bool(value):
     if isinstance(value, bool):
