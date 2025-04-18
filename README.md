@@ -1,21 +1,32 @@
 # S2S-ST
-Implement of "Sparser2Sparse: Single-shot Sparser-to-Sparse Learning for Spatial Transcriptomics Imputation with Natural Image Co-learning"
 
-# Data
-## ST data
-All data are downlaoded from HST-1K. Refer [HEST‑1k Dataset on Hugging Face](https://huggingface.co/datasets/MahmoodLab/hest).
-## Natrual image data
-You can download DIV2K data from [here](https://www.dropbox.com/s/41sn4eie37hp6rh/DIV2K_x2.h5?dl=0).
+Implementation of **"Sparser2Sparse: Single-shot Sparser-to-Sparse Learning for Spatial Transcriptomics Imputation with Natural Image Co-learning"**
 
-# Training
-Use `S2S-ST_training.py` to train the model.
-Fro example:
+---
+
+## 📊 Data
+
+### 🧬 Spatial Transcriptomics (ST) Data
+
+All ST data are downloaded from the [HEST‑1K Dataset on Hugging Face](https://huggingface.co/datasets/MahmoodLab/hest).
+
+### 🖼️ Natural Image Data
+
+You can download the DIV2K dataset from [this link](https://www.dropbox.com/s/41sn4eie37hp6rh/DIV2K_x2.h5?dl=0).
+
+---
+
+## 🚀 Training
+
+You can train the model using the script `S2S-ST_training.py`.
+
+Example command:
 ```bash
 python -u -W ignore S2S-ST_training.py \
---cuda_index 2 --config ./config/config_stride2_64x64_RDN_small.yaml \
---common_markers_path ./Xenium_common_markers.txt \
---batch_size 16 --min_mask_rate 0.5 --train_ratio 1. --gene_scale 10 \ --gene_loss_rate 10. --gradient_loss_rate 0. --img_grad "" --drop_rate 0. \
---two_step_predict "True" --down_sample_method1 upleft --train_on_origin_size "" \
+--cuda_index 0 --config ./config/config_stride2_64x64_RDN_small.yaml \
+--batch_size 16 --min_mask_rate 0.5 --train_ratio 1. --gene_scale 10 \ 
+--gene_loss_rate 10. --gradient_loss_rate 0. --drop_rate 0. \
+--two_step_predict "True" --down_sample_method1 upleft \
 --img_co_train "True" --split_train "" \
 --model_note "" --cv upleft \
 --marker ERBB2 --model RDN_HABs_M_DCs --Clayers 3 \
@@ -23,3 +34,4 @@ python -u -W ignore S2S-ST_training.py \
 --epochs 3000 --change_lr_to 0.0001 \
 --checkpoint_path ""
 ```
+Make sure to adjust the parameters as needed for your specific dataset and GPU setup.
