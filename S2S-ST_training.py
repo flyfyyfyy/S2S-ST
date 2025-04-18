@@ -17,19 +17,17 @@ from torchvision import transforms
 
 import models
 import utils
-import diff_utils
-import RDNet
+import unet_utils
 
 import importlib
 importlib.reload(models)
 importlib.reload(utils)
-importlib.reload(diff_utils)
-importlib.reload(RDNet)
+importlib.reload(unet_utils)
 
 from models import *
 from utils import *
-from diff_utils import *
-from RDNet import *
+from unet_utils import *
+
 def str_to_bool(value):
     if isinstance(value, bool):
         return value
@@ -223,7 +221,7 @@ for g in gs:
 print(f"Totel: {len(gs)}, Train: {len(train_gs)}")
 
 # %%
-img_h5_file = f"../data/DIV2K_HR.h5" if not args.real_LR else '../data/DIV2K_x2.h5'
+img_h5_file = f"./data/DIV2K_HR.h5" if not args.real_LR else './data/DIV2K_x2.h5'
 
 # creat new real img dataset
 '''
@@ -233,7 +231,7 @@ transform = transforms.Compose([
     Grayscale(num_output_channels=1)
     ]
 )
-with h5py.File('../data/DIV2K_x2.h5', 'r') as f:
+with h5py.File('./data/DIV2K_x2.h5', 'r') as f:
     with h5py.File("DIV2K_HR.h5", 'w') as f2:
         f2.create_group("hr")
         f2.create_group("lr")

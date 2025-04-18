@@ -4,8 +4,7 @@ global:
   model_save_path: ./model_save/
 
 data:
-  data_dir: ../data/hest/
-  markers_path: ../genes.txt
+  data_dir: ./data/hest/
   patch_size: 64
   stride: 2
   target_level: 1
