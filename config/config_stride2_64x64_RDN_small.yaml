@@ -1,0 +1,34 @@
+global:
+  seed: 42
+  epoch_from: 0
+  model_save_path: ./model_save/
+
+data:
+  data_dir: ../data/hest/
+  markers_path: ../genes.txt
+  patch_size: 64
+  stride: 2
+  target_level: 1
+  drop_rate: 0.0 # only used in training, augmentation in data loader
+  batch_size: 64
+  patch_emb_channel: 512
+  patch_emb_method: Conch # {'Conch',"Trainable"}
+  patch_emb_normal: True # for Conch
+  min_mask_rate: 0.5
+  down_sample_method: "upleft" # {"upleft", "bicubic"}
+  
+  x_scale_factor: 2.0 # 1.0 mean not scale it
+  x_minus: 1.0 # 0.0 mean not minus it
+  transform: False
+  clip_denoised: True # clip the denoised image to [-1, self.clip_max], only used when x_scale_factor != 1.0 or x_minus != 0.0, meaning that the input image is scaled and normalized
+
+  residual: False
+
+RDN:
+  G0: 32
+  D: 8
+  C: 4
+  G: 32
+
+HAB:
+  window_size: 8

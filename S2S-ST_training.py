@@ -16,18 +16,18 @@ from torch_geometric.data import Data
 from torchvision import transforms
 
 import models
-import utils_my
+import utils
 import diff_utils
 import RDNet
 
 import importlib
 importlib.reload(models)
-importlib.reload(utils_my)
+importlib.reload(utils)
 importlib.reload(diff_utils)
 importlib.reload(RDNet)
 
 from models import *
-from utils_my import *
+from utils import *
 from diff_utils import *
 from RDNet import *
 def str_to_bool(value):
